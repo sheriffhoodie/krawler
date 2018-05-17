@@ -12,6 +12,7 @@
 #  distance     :float
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  route        :string           is an Array
 #
 
 require 'test_helper'

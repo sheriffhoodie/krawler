@@ -21,6 +21,10 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_many: :crawls,
+  foreign_key: :user_id,
+  class_name: :Crawl
+
   def self.find_by_credentials(user_params)
     user = User.find_by(username: user_params[:username])
     user && user.is_password?(user_params[:password]) ? user : nil
@@ -43,5 +47,5 @@ class User < ApplicationRecord
     self.session_token = SecureRandom::urlsafe_base64
     self.save!
   end
-  
+
 end
