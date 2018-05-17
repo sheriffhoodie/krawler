@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint(8)        not null, primary key
+#  username        :string
+#  email           :string
+#  password_digest :string
+#  session_token   :string
+#  neighborhood    :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   validates :username, :password_digest, :email, :session_token, presence: true
   validates :username, :email, uniqueness: true
@@ -6,7 +20,7 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   attr_reader :password
-  
+
   def self.find_by_credentials(user_params)
     user = User.find_by(username: user_params[:username])
     user && user.is_password?(user_params[:password]) ? user : nil
@@ -29,4 +43,5 @@ class User < ApplicationRecord
     self.session_token = SecureRandom::urlsafe_base64
     self.save!
   end
+  
 end
