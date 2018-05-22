@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  has_many: :crawls,
+  has_many :crawls,
   foreign_key: :user_id,
   class_name: :Crawl
 
