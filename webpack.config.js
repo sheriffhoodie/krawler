@@ -1,10 +1,12 @@
 // webpack.config.js
 var path = require('path');
+var debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
   entry: './frontend/entry.jsx',
   output: {
-    filename: './bundle.js',
+    path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
